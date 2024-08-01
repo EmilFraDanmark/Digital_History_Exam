@@ -1,0 +1,87 @@
+---
+title: "Digital_Project_Exam_2024"
+author: "Emil_Schelde_Hansen"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Tidyverse
+```{r tidyverse}
+library(tidyverse)
+```
+
+## Census
+```{r census}
+Census <- read.csv("data/census-1801-cleaned.csv", na="Blank")
+Census
+```
+
+## Subsets
+```{r subsets, include=TRUE}
+Census_Almisselem=subset(Census, erhverv=="Almisselem" | erhverv=="Almisselem, Arbejder" | erhverv=="Almisselem, Arbejder, Daglejer" | erhverv=="Almisselem, Arbejdsløs" | erhverv=="Almisselem, Daglejer" | erhverv=="Almisselem, Daglejer, Fattig" | erhverv=="Almisselem, Daglejer, Handikappet" | erhverv=="Almisselem, Fattig" | erhverv=="Almisselem, Fattig, Handikappet" | erhverv=="Almisselem, Handikappet")
+
+Census_Arbejder=subset(Census, erhverv=="Arbejder" | erhverv=="Arbejder, Daglejer" | erhverv=="Arbejder, Daglejer, Fattig" | erhverv=="Arbejder, Fattig, Handikappet" | erhverv=="Arbejder, Fattig" | erhverv=="Arbejder, Handikappet" | erhverv=="Arbejder, Selvejer" | erhverv=="Almisselem, Arbejder" | erhverv=="Almisselem, Arbejder, Daglejer")
+
+Census_Arbejdsløs=subset(Census, erhverv=="Arbejdsløs" | erhverv=="Almisselem, Arbejdsløs")
+
+Census_Daglejer=subset(Census, erhverv=="Daglejer" | erhverv=="Daglejer, Fattig" | erhverv=="Daglejer, Fattig, Handikappet" | erhverv=="Daglejer, Handikappet" | erhverv=="Almisselem, Arbejder, Daglejer" | erhverv=="Almisselem, Daglejer" | erhverv=="Almisselem, Daglejer, Fattig" | erhverv=="Almisselem, Daglejer, Handikappet" | erhverv=="Arbejder, Daglejer" | erhverv=="Arbejder, Daglejer, Fattig" | erhverv=="Arbejder, Daglejer, Handikappet")
+
+Census_Fattig=subset(Census, erhverv=="Fattig" | erhverv=="Fattig, Handikappet" | erhverv=="Almisselem, Daglejer, Fattig" | erhverv=="Almisselem, Fattig" | erhverv=="Almisselem, Fattig, Handikappet" | erhverv=="Arbejder, Fattig, Daglejer" | erhverv=="Arbejder, Fattig" | erhverv=="Daglejer, Fattig" | erhverv=="Daglejer, Fattig, Handikappet")
+
+Census_Handikappet=subset(Census, erhverv=="Handikappet" | erhverv=="Fattig, Handikappet" | erhverv=="Daglejer, Handikappet" | erhverv=="Daglejer, Fattig, Handikappet" | erhverv=="Arbejder, Handikappet" | erhverv=="Arbejder, Daglejer, Handikappet" | erhverv=="Almisselem, Handikappet" | erhverv=="Almisselem, Fattig, Handikappet" | erhverv=="Almisselem, Daglejer, Handikappet")
+
+Census_Selvejer=subset(Census, erhverv=="Selvejer" | erhverv=="Arbejder, Selvejer")
+```
+
+## Summaries: Age
+```{r summary}
+summary(Census_Almisselem$alder)
+```
+```{r summary}
+summary(Census_Arbejder$alder)
+```
+```{r summary}
+summary(Census_Arbejdsløs$alder)
+```
+```{r summary}
+summary(Census_Daglejer$alder)
+```
+```{r summary}
+summary(Census_Fattig$alder)
+```
+```{r summary}
+summary(Census_Handikappet$alder)
+```
+```{r summary}
+summary(Census_Selvejer$alder)
+```
+
+## Summaries: County
+```{r amt}
+table(Census_Almisselem$amt)
+```
+```{r amt}
+table(Census_Arbejder$amt)
+```
+```{r amt}
+table(Census_Arbejdsløs$amt)
+```
+```{r amt}
+table(Census_Daglejer$amt)
+```
+```{r amt}
+table(Census_Fattig$amt)
+```
+```{r amt}
+table(Census_Handikappet$amt)
+```
+```{r amt}
+table(Census_Selvejer$amt)
+```
+
+
+
